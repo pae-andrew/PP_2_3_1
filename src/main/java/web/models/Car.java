@@ -1,15 +1,28 @@
 package web.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cars")
 public class Car {
 
-    public String model;
-    public String series;
-    public int age;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Car(String model, String series, int age) {
+    @Column(name = "model")
+    public String model;
+
+    @Column(name = "series")
+    public String series;
+
+    public Car(String model, String series) {
         this.model = model;
         this.series = series;
-        this.age = age;
+    }
+
+    public Car() {
+
     }
 
     @Override
@@ -17,7 +30,6 @@ public class Car {
         return "Car{" +
                 "model='" + model + '\'' +
                 ", series='" + series + '\'' +
-                ", age=" + age +
                 '}';
     }
 }

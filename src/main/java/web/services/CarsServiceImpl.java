@@ -12,17 +12,20 @@ import java.util.List;
 @Service
 public class CarsServiceImpl implements CarService {
 
+//    @Autowired
+//    EntityManager em;
+
     List<Car> cars = new ArrayList<>();
 
     @Autowired
     CarDAO carDAO = new CarDAOImpl();
 
     public CarsServiceImpl() {
-        cars.add(new Car("BMW", "M3", 3));
-        cars.add(new Car("BMW", "X7", 1));
-        cars.add(new Car("Lexus", "RX400h", 10));
-        cars.add(new Car("Toyota", "Camry", 2));
-        cars.add(new Car("Dodge", "Stratus", 21));
+        cars.add(new Car("BMW", "M3"));
+        cars.add(new Car("BMW", "M3"));
+        cars.add(new Car("BMW", "M3"));
+        cars.add(new Car("BMW", "M3"));
+        cars.add(new Car("BMW", "M3"));
     }
 
     @Override
