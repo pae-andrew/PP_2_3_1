@@ -1,7 +1,10 @@
 package web.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -18,7 +21,6 @@ import java.beans.PropertyVetoException;
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
-@ComponentScan(value = "web")
 public class AppConfig {
 
     private final Environment env;
@@ -42,7 +44,7 @@ public class AppConfig {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean(); // HibernateExceptions, PersistenceExceptions... to DataAccessException
         em.setDataSource(dataSource());
-        em.setPackagesToScan("web.models");
+        em.setPackagesToScan("web");
         em.setJpaVendorAdapter(vendorAdapter);
         return em;
     }

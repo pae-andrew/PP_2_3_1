@@ -6,5 +6,11 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> getUsers(int count);
+    List<User> getAllUsers();
+
+    User readUser(long id);
+
+    User deleteUser(long parseUnsignedInt);
+
+    void createOrUpdateUser(User user);
 }

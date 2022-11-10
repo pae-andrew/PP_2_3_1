@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head th:replace="layouts/main :: htmlhead"/>
+
+<body>
+
+<div th:replace="layouts/main :: navigation" />
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="mt-5">Kata subj</h1>
+            <p class="lead">PP_2_3_1</p>
+        </div>
+    </div>
+</div>
+
+<div class="container pl-0">
+    <div class="row pb-3 pt-3 mb-2 pl-0 ml-0">
+        <div class="col-12 pl-0"><a type="button" th:href="${(#mvc.url('UC#addUserForm')).build()}" class="btn btn-light">Создать пользователя</a></div>
+    </div>
+</div>
+
+<div class="container" th:remove="${users.size() == 0} ? all">
+    <div class="row p-3 mb-2 bg-light text-black">
+        <div class="col">Имя</div>
+        <div class="col">Фамилия</div>
+        <div class="col text-center">E-mail</div>
+        <div class="col text-center">Действия</div>
+    </div>
+
+    <div th:each="user,rowStat : ${users}" class="d-flex align-items-center row p-2 mb-2" th:classappend="${'bg-light text-dark'}">
+        <div class="col font-weight-bold" th:text="${user.getFirstName()}"/>
+        <div class="col" th:text="${user.getLastName()}"/>
+        <div class="col text-center" th:text="${user.getEmail()}"/>
+        <div class="col text-center">
+            <a type="button" th:href="@{/users/{id}/edit(id=${user.getId()})}" class="btn btn-light" th:classappend="${'bg-light text-dark'}">Изменить</a>
+            <a type="button" th:href="@{/users/delete(id=${user.getId()})}" class="btn btn-light" th:classappend="${'bg-light text-dark'}">Удалить</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
