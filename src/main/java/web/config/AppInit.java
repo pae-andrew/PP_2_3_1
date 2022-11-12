@@ -3,7 +3,6 @@ package web.config;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import web.config.listener.AppContextListener;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
@@ -35,7 +34,5 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         filterRegistration.addMappingForUrlPatterns(null, false, "/*");
         filterRegistration = servletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter() );
         filterRegistration.addMappingForUrlPatterns(null, false, "/*");
-
-        servletContext.addListener(AppContextListener.class);
     }
 }
